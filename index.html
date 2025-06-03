@@ -12,8 +12,44 @@
     <!-- Custom CSS -->
      <link rel="stylesheet" href="css/style.css">
 
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>    
+    <script>
+        lucide.createIcons();
+    </script>
 </head>
 <body>
-    
+    <section id="hero" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-green-800 text-white overflow-hidden">
+        
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <!-- Background image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+            style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-bold mb-4 sm:mb-6 leading-tight text-shadow-xs">
+                Eden Springs SDA Church
+            </h1>
+            <h2 class="text-lg sm:text-xl md:text-2xl lg:text-6xl font-bold mb-6 sm:mb-8 text-orange-400 text-shadow-lg">
+                Camp Meeting 2025
+            </h2>
+
+            <!-- Date and Location -->
+            <div class="flex items-center justify-center mb-6 sm:mb-8 text-base sm:text-lg md:text-3xl">
+                <i data-lucide="calendar" class="mr-2 sm:mr-3"></i>
+                <span>August 17th - 24th, 2024</span>
+            </div>
+
+            <p class="text-base sm:text-lg md:text-xl lg:text-3xl mb-8 sm:mb-10 leading-relaxed text-blue-100 max-w-2xl mx-auto px-2">
+                Join us for a week of spiritual renewal, fellowship, and divine inspiration as we gather in the presence of the Lord.
+            </p>
+        </div>
+
+        <!-- Decorative Element -->
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
 </body>
 </html>
