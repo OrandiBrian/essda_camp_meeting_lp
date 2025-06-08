@@ -14,9 +14,7 @@
 
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>    
-    <script>
-        lucide.createIcons();
-    </script>
+    
 </head>
 <body>
     <header class="bg-green-900/80 text-white py-4">
@@ -125,5 +123,183 @@
             </div>
         </div>
     </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
+                    Support Our Camp Meeting
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2">
+                    Your contribution helps make this spiritual gathering possible. Every gift, 
+                    no matter the size, is a blessing and helps create an atmosphere where God can move.
+                </p>
+            </div>
+            
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
+                <form id="contribution-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
+                                Full Name <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="fullName" name="fullName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number (M-Pesa) <span class="text-red-500">*</span>
+                        </label>
+                        <input type="tel" id="phone" name="phone" required placeholder="254712345678" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                    </div>
+                    
+                    <div>
+                        <label for="amount" class="block text-sm font-medium text-gray-700 mb-2">
+                            Contribution Amount (KSh) <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="amount" name="amount" required min="1" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        
+                        <!-- Suggested amounts -->
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button type="button" class="amount-btn px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors" data-amount="500">
+                                KSh 500
+                            </button>
+                            <button type="button" class="amount-btn px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors" data-amount="1000">
+                                KSh 1,000
+                            </button>
+                            <button type="button" class="amount-btn px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors" data-amount="2000">
+                                KSh 2,000
+                            </button>
+                            <button type="button" class="amount-btn px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors" data-amount="5000">
+                                KSh 5,000
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                            Prayer Request or Message (Optional)
+                        </label>
+                        <textarea id="message" name="message" rows="4" 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                                  placeholder="Share your prayer request or encouragement..."></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-green-700 transition-all duration-1000 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        <span class="flex items-center justify-center">
+                            <i data-lucide="heart" class="mr-2"></i>
+                            Contribute Now via M-Pesa
+                        </span>
+                    </button>
+                </form>
+                
+                <!-- Loading and Success Messages -->
+                <div id="loading-message" class="hidden text-center mt-6">
+                    <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg">
+                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-700 mr-2"></div>
+                        Processing your contribution...
+                    </div>
+                </div>
+                
+                <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mt-6">
+                    <strong>Thank you!</strong> Your contribution has been received. You should receive an M-Pesa prompt shortly.
+                </div>
+                
+                <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mt-6">
+                    <strong>Error:</strong> <span id="error-text">Something went wrong. Please try again.</span>
+                </div>
+            </div>
+            
+            <!-- Payment Methods Info -->
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-600 mb-4">We accept contributions through:</p>
+                <div class="flex justify-center items-center space-x-6">
+                    <div class="bg-green-100 px-4 py-2 rounded-lg">
+                        <span class="text-green-700 font-semibold">M-Pesa</span>
+                    </div>
+                    <div class="bg-blue-100 px-4 py-2 rounded-lg">
+                        <span class="text-blue-700 font-semibold">NCBA Bank</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-4">Paybill: 522522 | Account: EDENSPRINGS</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-8 sm:py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4">Eden Springs SDA Church</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        A community of believers committed to sharing God's love and 
+                        preparing for His second coming through worship, fellowship, and service.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Information</h4>
+                    <div class="space-y-2 text-sm sm:text-base">
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="mr-2 text-blue-400"></i>
+                            <span class="text-gray-300">Nairobi, Kenya</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="phone" class="mr-2 text-blue-400"></i>
+                            <span class="text-gray-300">+254 700 000 000</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="mail" class="mr-2 text-blue-400"></i>
+                            <span class="text-gray-300">info@edensprings.church</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Camp Meeting Schedule</h4>
+                    <ul class="space-y-2 text-sm sm:text-base text-gray-300">
+                        <li>• Daily: 6:00 AM - Morning Devotion</li>
+                        <li>• Daily: 9:00 AM - Main Session</li>
+                        <li>• Daily: 3:00 PM - Workshop</li>
+                        <li>• Daily: 7:00 PM - Evening Program</li>
+                        <li>• Sabbath: Special Programming</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2024 Eden Springs SDA Church. All rights reserved. | 
+                    <span class="text-blue-400">God bless you!</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/payments.js"></script>
+    
+    <!-- Initialize Lucide Icons -->
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
